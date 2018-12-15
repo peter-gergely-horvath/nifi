@@ -28,6 +28,9 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public final class FileUtils {
 
@@ -52,6 +55,21 @@ public final class FileUtils {
                 return FileVisitResult.CONTINUE;
             }
         });
+    }
+
+    public static List<File> listDirRecursive(Path directory) throws IOException {
+        List<File> resultList = new LinkedList<>();
+
+
+        Files.walkFileTree(directory, new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                resultList.add(file.toFile());
+                return FileVisitResult.CONTINUE;
+            }
+        });
+
+        return Collections.unmodifiableList(resultList);
     }
 
     public static void deleteDirectoryRecursive(File dir) {
