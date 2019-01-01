@@ -57,4 +57,4 @@ script:
   # NOTE: run-testharness-tests will runn the test cases within the testharness; this is not required in the PR
   - bash .travis.sh
   - mvn -T 2 clean install -DskipTests=true | grep -v -F -f .travis-output-filters
-  - cd nifi-testharness && mvn clean install -Prun-testharness-tests | grep -v -F -f .travis-output-filters && exit ${PIPESTATUS[0]}
+  - bash run-testharness-tests.sh
