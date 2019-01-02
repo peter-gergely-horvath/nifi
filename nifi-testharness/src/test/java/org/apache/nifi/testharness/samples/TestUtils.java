@@ -36,7 +36,7 @@ final class TestUtils {
 
         if (!binaryDistributionZipDir.exists()) {
             throw new IllegalStateException("NiFi distribution ZIP file not found at the expected location: "
-                    + binaryDistributionZipDir);
+                    + binaryDistributionZipDir.getAbsolutePath());
         }
 
         File[] files = binaryDistributionZipDir.listFiles((dir, name) ->
