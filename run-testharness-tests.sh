@@ -18,5 +18,5 @@
 
 cd nifi-testharness
 
-mvn clean install -Prun-testharness-tests | grep -v -F -f ../travis-output-filters && exit ${PIPESTATUS[0]}
+mvn clean install -Prun-testharness-tests | grep -v -F -f ../.travis-output-filters && exit ${PIPESTATUS[0]}
 
