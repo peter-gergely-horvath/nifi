@@ -19,12 +19,7 @@
 
 package org.apache.nifi.testharness.samples;
 
-import org.apache.nifi.testharness.util.FileUtils;
-
 import java.io.File;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 final class TestUtils {
 
@@ -48,20 +43,8 @@ final class TestUtils {
         }
 
         if (files.length == 0) {
-
-            String filesFoundString;
-
-            try {
-                filesFoundString = FileUtils.listDirRecursive(binaryDistributionZipDir.toPath()).stream()
-                        .map(File::getAbsolutePath)
-                        .collect(Collectors.joining(","));
-            } catch (IOException e) {
-                filesFoundString = "";
-            }
-
-            throw new IllegalStateException("No NiFi distribution ZIP file is found in: "
-                            + binaryDistributionZipDir.getAbsolutePath()
-                            + "; Files found are: " + filesFoundString);
+            throw new IllegalStateException(
+                    "No NiFi distribution ZIP file is found in: " + binaryDistributionZipDir.getAbsolutePath());
         }
 
         if (files.length > 1) {
